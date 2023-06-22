@@ -13,5 +13,10 @@ async function GetRecipe(){
     console.log(data);
     console.log(data.strMeal);
     console.log(data.strInstructions);
+    //instead of img element created by html, 
+    //maybe make img element in JS when button is pressed
+    //document.createelement and document.body.appendchild
+    document.getElementById('recipeImg').src = data.strMealThumb;
+    document.getElementById('recipeName').innerHTML = data.strMeal;
+    document.getElementById('recipeInstruct').innerHTML = data.strInstructions;
 }
-GetRecipe()
