@@ -3,6 +3,11 @@
 }
 
 #recipeImg{
+    display: none;
+}
+
+#recipeImg[src]{
+    display: block;
     float: left;
     width: 400px;
     height: 400px;

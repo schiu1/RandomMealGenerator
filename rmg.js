@@ -19,4 +19,10 @@ async function GetRecipe(){
     document.getElementById('recipeImg').src = data.strMealThumb;
     document.getElementById('recipeName').innerHTML = data.strMeal;
     document.getElementById('recipeInstruct').innerHTML = data.strInstructions;
+    //adding ingredients
+    var imgList = document.getElementById('ingredients');
+    var ingredient = data.strIngredient1;
+    var item = document.createElement('li');
+    item.appendChild(document.createTextNode(ingredient));
+    imgList.appendChild(item);
 }
