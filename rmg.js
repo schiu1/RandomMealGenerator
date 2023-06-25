@@ -13,16 +13,20 @@ async function GetRecipe(){
     console.log(data);
     console.log(data.strMeal);
     console.log(data.strInstructions);
+
+    var imgList = document.getElementById('ingredients');
+    for (const x in data){
+        if(x.includes('strIngredient') && data[x] != "" && data[x] != null){
+            var item = document.createElement('li');
+            item.appendChild(document.createTextNode(data[x]));
+            imgList.appendChild(item);
+        }
+    }
+    
     //instead of img element created by html, 
     //maybe make img element in JS when button is pressed
     //document.createelement and document.body.appendchild
     document.getElementById('recipeImg').src = data.strMealThumb;
     document.getElementById('recipeName').innerHTML = data.strMeal;
     document.getElementById('recipeInstruct').innerHTML = data.strInstructions;
-    //adding ingredients
-    var imgList = document.getElementById('ingredients');
-    var ingredient = data.strIngredient1;
-    var item = document.createElement('li');
-    item.appendChild(document.createTextNode(ingredient));
-    imgList.appendChild(item);
 }
