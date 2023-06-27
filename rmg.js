@@ -11,21 +11,30 @@ async function GetRecipe(){
     const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
     const data =  await response.json().then(data => data.meals[0])
     console.log(data);
-    console.log(data.strMeal);
-    console.log(data.strInstructions);
 
+    let ingreCount = 1;
+    let measureCount = 1;
     var imgList = document.getElementById('ingredients');
+
+    while(imgList.hasChildNodes()){
+        imgList.removeChild(imgList.firstChild);
+    }
+
     for (const x in data){
         if(x.includes('strIngredient') && data[x] != "" && data[x] != null){
             var item = document.createElement('li');
-            item.appendChild(document.createTextNode(data[x]));
+            item.id = 'i' + ingreCount;
+            ingreCount++;
+            item.appendChild(document.createTextNode(data[x] + ' - '));
             imgList.appendChild(item);
+        }
+        else if (x.includes('strMeasure') && data[x] != " " && data[x] != ""){
+            var item = document.getElementById('i' + measureCount.toString());
+            item.innerHTML = item.innerHTML + data[x];
+            measureCount++;
         }
     }
     
-    //instead of img element created by html, 
-    //maybe make img element in JS when button is pressed
-    //document.createelement and document.body.appendchild
     document.getElementById('recipeImg').src = data.strMealThumb;
     document.getElementById('recipeName').innerHTML = data.strMeal;
     document.getElementById('recipeInstruct').innerHTML = data.strInstructions;
