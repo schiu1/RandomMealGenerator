@@ -35,6 +35,7 @@ async function GetRecipe(){
         }
     }
     
+    document.getElementById('ingTitle').style.display = 'block';
     document.getElementById('recipeImg').src = data.strMealThumb;
     document.getElementById('recipeName').innerHTML = data.strMeal;
     document.getElementById('recipeInstruct').innerHTML = data.strInstructions;
