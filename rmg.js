@@ -39,4 +39,5 @@ async function GetRecipe(){
     document.getElementById('recipeImg').src = data.strMealThumb;
     document.getElementById('recipeName').innerHTML = data.strMeal;
     document.getElementById('recipeInstruct').innerHTML = data.strInstructions;
+    //document.getElementById('video').src = data.strYoutube;
 }
