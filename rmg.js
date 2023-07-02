@@ -22,13 +22,15 @@ async function GetRecipe(){
 
     for (const x in data){
         if(x.includes('strIngredient') && data[x] != "" && data[x] != null){
+            console.log("Ingredient: "+data[x]);
             var item = document.createElement('li');
             item.id = 'i' + ingreCount;
             ingreCount++;
             item.appendChild(document.createTextNode(data[x] + ' - '));
             imgList.appendChild(item);
         }
-        else if (x.includes('strMeasure') && data[x] != " " && data[x] != ""){
+        else if (x.includes('strMeasure') && data[x] != " " && data[x] != "" && data[x] != null){
+            console.log("measure: "+data[x]);
             var item = document.getElementById('i' + measureCount.toString());
             item.innerHTML = item.innerHTML + data[x];
             measureCount++;
@@ -39,5 +41,6 @@ async function GetRecipe(){
     document.getElementById('recipeImg').src = data.strMealThumb;
     document.getElementById('recipeName').innerHTML = data.strMeal;
     document.getElementById('recipeInstruct').innerHTML = data.strInstructions;
-    //document.getElementById('video').src = data.strYoutube;
+    document.getElementById('video').style.display = 'block';
+    document.getElementById('video').src = "https://www.youtube.com/embed/" + data.strYoutube.slice(-11);
 }
