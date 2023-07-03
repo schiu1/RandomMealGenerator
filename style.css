@@ -56,3 +56,13 @@ body{
     display: none;
     margin: auto;
 }
+
+#category{
+    margin: 20px;
+    display: none;
+}
+
+#area{
+    margin: 20px;
+    display: none;
+}

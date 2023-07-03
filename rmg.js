@@ -22,7 +22,6 @@ async function GetRecipe(){
 
     for (const x in data){
         if(x.includes('strIngredient') && data[x] != "" && data[x] != null){
-            console.log("Ingredient: "+data[x]);
             var item = document.createElement('li');
             item.id = 'i' + ingreCount;
             ingreCount++;
@@ -30,7 +29,6 @@ async function GetRecipe(){
             imgList.appendChild(item);
         }
         else if (x.includes('strMeasure') && data[x] != " " && data[x] != "" && data[x] != null){
-            console.log("measure: "+data[x]);
             var item = document.getElementById('i' + measureCount.toString());
             item.innerHTML = item.innerHTML + data[x];
             measureCount++;
@@ -39,8 +37,18 @@ async function GetRecipe(){
     
     document.getElementById('ingTitle').style.display = 'block';
     document.getElementById('recipeImg').src = data.strMealThumb;
+
+    const cate = document.getElementById('category');
+    cate.style.display = 'block';
+    cate.innerHTML = "<b>Category: </b>" + data.strCategory;
+    
+    const area = document.getElementById('area');
+    area.style.display = 'block';
+    area.innerHTML = "<b>Area: </b>" + data.strArea;
+    
     document.getElementById('recipeName').innerHTML = data.strMeal;
     document.getElementById('recipeInstruct').innerHTML = data.strInstructions;
+    
     document.getElementById('video').style.display = 'block';
     document.getElementById('video').src = "https://www.youtube.com/embed/" + data.strYoutube.slice(-11);
 }
